@@ -1,48 +1,64 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
 import React from "react";
 import { Feather } from "@expo/vector-icons";
-import { Fontisto } from "@expo/vector-icons"
+import { Fontisto } from "@expo/vector-icons";
 
 import GlobalStyles from "../assets/GlobalStyles";
-
+import Card from "../components/Card";
 
 const HomeScreen = () => {
   return (
-    <View style={GlobalStyles.safeArea}>
+    <SafeAreaView style={GlobalStyles.safeArea}>
+      <ScrollView>
         {/* header */}
-      <View style={styles.header}>
-        <TouchableOpacity>
-        <Feather name="menu" size={30} color={"#fff"}  />
-        </TouchableOpacity>
-        <Text>Homepage</Text>
-        <TouchableOpacity>
-          <Fontisto
-          name="search"
-          size={30}
-          color={"#fff"}
+        <View style={styles.header}>
+          <TouchableOpacity>
+            <Feather name="menu" size={30} color={"#fff"} />
+          </TouchableOpacity>
+          <Text>Homepage</Text>
+          <TouchableOpacity>
+            <Fontisto name="search" size={30} color={"#fff"} />
+          </TouchableOpacity>
+          <Image
+            source={require(".././assets/images/1.png")}
+            style={styles.profilePic}
           />
-        </TouchableOpacity>
-        <Image
-          source={require(".././assets/images/1.png")}
-          style={styles.profilePic}
+        </View>
+        {/* Section: Popular */}
+        <View>
+          <Text style={styles.title}>Popular</Text>
+        </View>
+        <Card
+          source={require(".././assets/images/3.jpg")}
+          title="HunterXHunter"
+          episodes="65"
+          chapters="23"
+          pages="332"
         />
-      </View>
-      {/* Section: Popular */}
-      <View>
-        <Text style={styles.title}>
-            Popular
-        </Text>
-      </View>
-      <View style={styles.card}>
-        <Image
-        source={require(".././assets/images/3.jpg")}
-        style={styles.cardImg}
+        <Card
+          source={require(".././assets/images/3.jpg")}
+          title="HunterXHunter"
+          episodes="65"
+          chapters="23"
+          pages="332"
         />
-        <Text style={styles.cardTitle}>
-          Hunter X Hunter
-        </Text>
-      </View>
-    </View>
+        <Card
+          source={require(".././assets/images/3.jpg")}
+          title="HunterXHunter"
+          episodes="65"
+          chapters="23"
+          pages="332"
+        />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -51,7 +67,8 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   header: {
     height: 60,
-    backgroundColor: "#3e3e3e",
+    width: 400,
+    backgroundColor: "#888",
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
@@ -61,28 +78,14 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
   },
-  title:{
+  title: {
     fontSize: 20,
-    marginTop: 10,
-    color: "#3e3e3e3",
-    textAlign: "center"
+    marginVertical: 10,
+    color: "#aaa",
+    textAlign: "center",
   },
-  card:{
-    width:400,
-    backgroundColor: "#3e3e3e",
-    flexDirection: "row",
-    padding: 20
+  container: {
+    flex: 1,
+    alignItems: "center",
   },
-  cardImg:{
-    width: 100,
-    height: 190,
-    borderRadius: 5,
-    marginHorizontal: 10
-  },
-  cardTitle:{
-    marginHorizontal: 10,
-    fontSize: 20,
-    color:"#f3f3f3",
-    fontWeight: "bold"
-  }
 });
