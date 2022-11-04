@@ -20,6 +20,7 @@
   "dependencies": {
     "@expo/webpack-config": "0.17.0",
     "cors": "^2.8.5",
+    "expo-linear-gradient": "^11.4.0",
     "react-native-web": "^0.18.10"
   },
   "devDependencies": {
