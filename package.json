@@ -21,7 +21,8 @@
     "@expo/webpack-config": "0.17.0",
     "cors": "^2.8.5",
     "expo-linear-gradient": "^11.4.0",
-    "react-native-web": "^0.18.10"
+    "react-native-web": "^0.18.10",
+    "expo-image-picker": "~13.3.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

@@ -4,17 +4,19 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import HomeScreen from "./Screens/HomeScreen";
 import LoginScreen from "./Screens/LoginScreen";
+import AddSerie from "./Screens/AddSerie";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-      initialRouteName='Login'
+      initialRouteName='AddSerie'
       screenOptions={{headerShown: false}}
       >
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="AddSerie" component={AddSerie} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -16,7 +16,7 @@ import Card from "../components/Card";
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView style={GlobalStyles.safeArea}>
+    <SafeAreaView style={[GlobalStyles.safeArea, backgroundColor]}>
       <ScrollView>
         {/* header */}
         <View style={styles.header}>

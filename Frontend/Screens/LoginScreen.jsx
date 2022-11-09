@@ -20,7 +20,7 @@ const LoginScreen = () => {
     <TouchableWithoutFeedback>
       <View style={styles.container}>
         <View>
-          <Text style={{fontSize: 60, paddingTop: 80,}}>Manga Reader</Text>
+          <Text style={{fontSize: 60, paddingTop: 40,}}>Manga Reader</Text>
         </View>
         <Text>{windowHeight}</Text>
         <Text>{windowWidth}</Text>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 20,
     color: colorPalette.lightPurple,
-    width: 400,
+    width: windowWidth * 0.8,
     backgroundColor: colorPalette.harmony,
     alignSelf: "center",
     marginVertical: 10,
@@ -83,9 +83,9 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: colorPalette.lightPurple,
-    width: 200,
-    marginTop: 40,
-    height: 70,
+    width: windowWidth * 0.4,
+    marginTop: 20,
+    height: 50,
     alignSelf: "center",
     borderRadius: 5,
     justifyContent: "center",
@@ -93,13 +93,13 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     alignSelf: "center",
-    fontSize: 30,
+    fontSize: 20,
     justifyContent: "center",
   },
   registerText: {
     position: "absolute",
     bottom: 30,
     alignSelf: "center",
-    fontSize: 20
+    fontSize: 15
   }
 });
