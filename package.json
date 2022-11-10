@@ -1,30 +1,12 @@
 {
-  "name": "manga-moviles",
+  "name": "mangafront",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jonny868/Manga-Moviles.git"
-  },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jonny868/Manga-Moviles/issues"
-  },
-  "homepage": "https://github.com/jonny868/Manga-Moviles#readme",
-  "dependencies": {
-    "@expo/webpack-config": "0.17.0",
-    "cors": "^2.8.5",
-    "expo-linear-gradient": "^11.4.0",
-    "react-native-web": "^0.18.10",
-    "expo-image-picker": "~13.3.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
-  }
+  "license": "ISC"
 }
