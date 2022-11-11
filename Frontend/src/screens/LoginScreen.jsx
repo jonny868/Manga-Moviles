@@ -25,8 +25,7 @@ const LoginScreen = () => {
             color="#5A4AE3"
           />
           <TextInput
-            autoFocus={true}
-            style={styles.input}
+            autoFocus={false}
             placeholder="email@email.com"
           />
         </View>
@@ -40,7 +39,6 @@ const LoginScreen = () => {
           />
           <TextInput
             secureTextEntry={true}
-            style={styles.input}
             placeholder="Password"
             ty
           />
@@ -67,7 +65,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logo: {
-    marginVertical: 30,
+    marginTop: 20,
     width: 397,
     height: 274,
   },
