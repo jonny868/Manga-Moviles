@@ -6,40 +6,94 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  ToastAndroid,
 } from "react-native";
-import React from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 
+import { registerUser } from "../controllers/api";
+import { useState } from "react";
+
 const RegisterScreen = () => {
+  const [inputs, setInputs] = usestate({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    admin: "",
+  });
+
+  const register = async () => {
+    if (
+      inputs.username !== "" ||
+      inputs.email !== "" ||
+      inputs.password !== "" ||
+      inputs.confirmPassword !== ""
+    ) {
+      if (inputs.password !== inputs.confirmPassword) {
+        ToastAndroid.show("Passwords do not match", ToastAndroid.SHORT);
+        // Si el codigo de el admin es incorrecto lanza error
+      } else if (inputs.adminCode !== "123" && admin) {
+        setLoad(false);
+        return setMsg({
+          text: "El código de admin es incorrecto",
+          display: true,
+          type: false,
+        });
+      }
+    }
+  };
+
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.card}>
         <Text style={styles.headerText}>Become part of our family!</Text>
-        
+
         <Text style={styles.label}>Email</Text>
         <View style={styles.inputContainer}>
-          <FontAwesome style={{paddingHorizontal: 10}} name="envelope" size={24} color="#5A4AE3" />
-          <TextInput placeholder="Email@email.com"/>
+          <FontAwesome
+            style={{ paddingHorizontal: 10 }}
+            name="envelope"
+            size={24}
+            color="#5A4AE3"
+          />
+          <TextInput placeholder="Email@email.com" />
         </View>
 
         <Text style={styles.label}>Username</Text>
         <View style={styles.inputContainer}>
-          <FontAwesome style={{paddingHorizontal: 10}} name="user" size={24} color="#5A4AE3" />
-          <TextInput placeholder="Username"/>
+          <FontAwesome
+            style={{ paddingHorizontal: 10 }}
+            name="user"
+            size={24}
+            color="#5A4AE3"
+          />
+          <TextInput placeholder="Username" />
         </View>
-        
+
         <Text style={styles.label}>Password</Text>
         <View style={styles.inputContainer}>
-          <FontAwesome style={{paddingHorizontal: 10}} name="user" size={24} color="#5A4AE3" />
-          <TextInput placeholder="Password" secureTextEntry={true}/>
+          <FontAwesome
+            style={{ paddingHorizontal: 10 }}
+            name="user"
+            size={24}
+            color="#5A4AE3"
+          />
+          <TextInput placeholder="Password" secureTextEntry={true} />
         </View>
 
         <Text style={styles.label}>Confirm password</Text>
         <View style={styles.inputContainer}>
-          <FontAwesome style={{paddingHorizontal: 10}} name="user" size={24} color="#5A4AE3" />
-          <TextInput placeholder="Password" secureTextEntry={true}/>
+          <FontAwesome
+            style={{ paddingHorizontal: 10 }}
+            name="user"
+            size={24}
+            color="#5A4AE3"
+          />
+          <TextInput placeholder="Password" secureTextEntry={true} />
         </View>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={register}>
           <Text style={{ fontSize: 20, color: "#5A4AE3", fontWeight: "bold" }}>
             Register
           </Text>
@@ -71,7 +125,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 20,
     fontWeight: "bold",
-    marginVertical: 10
+    marginVertical: 10,
   },
   inputContainer: {
     backgroundColor: "#fff",
