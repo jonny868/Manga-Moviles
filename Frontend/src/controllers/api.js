@@ -1,9 +1,8 @@
 import axios, { Axios } from "axios";
 
-
 const url = "http://10.0.0.115:3000/api";
 
-const errorCatcher = async (err) => {
+const catchError = async (err) => {
   /// Error
   if (err.response) {
     console.log(err.response.data.msg);
@@ -26,24 +25,27 @@ const errorCatcher = async (err) => {
 };
 
 export const loginUser = async (data) => {
-    let response
+  let response;
 
+  //Extrae los datos
+  const { username, password } = data;
 
-   
-    await axios.post(`${url}/login`, data)
-        .then((res) => {
-            response = res
-        }).catch((err) => {
-            response = errorCatcher(err)
-        })
-    return response
-
-}
+  await axios
+    .get(`${url}/login/${username}/${password}`)
+    .then((res) => {
+      response = res;
+    })
+    .catch((err) => {
+      response = catchError(err);
+    });
+  return response;
+};
 
 export const registerUser = async (user) => {
   let response;
 
-  await axios.post(`${url}/register`, user)
+  await axios
+    .post(`${url}/register`, user)
     .then((res) => {
       response = res;
     })

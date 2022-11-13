@@ -35,7 +35,7 @@ ctrl.home = (req, res) => {
 
 // Ruta login 
 ctrl.login = async (req, res) => {
-
+console.log('Trying to log in')
     // Se extraen los datos del route params al usar router.get(algunaruta/:username/:password,function)
     const { username, password } = req.params
     const searchUsername = await User.findOne({ username })
@@ -69,7 +69,7 @@ ctrl.register = async (req, res) => {
 
     let admin = false
     // Se extraen las variables que llegan al router.post()
-    const { username, email, password, adminCode } = req.body.data
+    const { username, email, password, adminCode } = req.body
     const searchUsername = await User.findOne({ username })
     const searchEmail = await User.findOne({ email })
 

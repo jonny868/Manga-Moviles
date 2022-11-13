@@ -8,29 +8,46 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesome } from "@expo/vector-icons";
-
 import { loginUser } from "../controllers/api";
+import { Context } from "../controllers/context";
 
 const LoginScreen = ({ navigation }) => {
+  const { setUser, setLoad } = useContext(Context)
   //  const [email, setEmail] = useState('')
   //  const [password, setPassword] = useState('')
   const [inputs, setInputs] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
   const inputChange = (name, data) => setInputs({ ...inputs, [name]: data });
 const loginBtn = async () => {
+  setLoad(true)
 const res = await loginUser(inputs)
+if (res.status === 200) {
+
+  // Desactiva la pantalla de carga
+  setLoad(false)
+
+  // Vacía el estado de los inputs
+  setInputs({
+    username: '',
+    password: '',
+  })
+
+  
+  setUser(res.data)
+
+}
 console.log(res.data)
 }
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={require("../../assets/logo2.png")} />
       <View style={styles.card}>
-        <Text style={styles.label}>Email</Text>
+        <Text style={styles.label}>Username</Text>
         <View style={styles.inputContainer}>
           <FontAwesome
             style={styles.icon}
@@ -39,10 +56,10 @@ console.log(res.data)
             color="#5A4AE3"
           />
           <TextInput
-            value={inputs.email}
+            value={inputs.username}
             autoFocus={false}
-            placeholder="email@email.com"
-            onChangeText={(text) => inputChange('email', text)}
+            placeholder="JohnDoe"
+            onChangeText={(text) => inputChange('username', text)}
           />
         </View>
         <Text style={styles.label}>Password</Text>

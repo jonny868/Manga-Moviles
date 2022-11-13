@@ -30,6 +30,8 @@ export default function App() {
       value={{
         user,
         setUser,
+        load,
+      setLoad
         
       }}
     >
