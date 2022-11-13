@@ -1,6 +1,6 @@
 import axios, { Axios } from "axios";
 
-const url = "http://10.0.0.115:3000/api";
+const url = "http://10.0.0.115:3000/";
 
 const catchError = async (err) => {
   /// Error
@@ -24,14 +24,14 @@ const catchError = async (err) => {
   }
 };
 
+//LOGIN
 export const loginUser = async (data) => {
   let response;
 
-  //Extrae los datos
   const { username, password } = data;
 
   await axios
-    .get(`${url}/login/${username}/${password}`)
+    .get(`${url}login/${username}/${password}`)
     .then((res) => {
       response = res;
     })
@@ -40,17 +40,17 @@ export const loginUser = async (data) => {
     });
   return response;
 };
-
+//REGISTER
 export const registerUser = async (user) => {
   let response;
 
   await axios
-    .post(`${url}/register`, user)
+    .post(`${url}register`, { data })
     .then((res) => {
       response = res;
     })
     .catch((err) => {
-      response = errorCatcher(err);
+      response = catchError(err);
     });
   return response;
 };

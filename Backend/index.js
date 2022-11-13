@@ -2,6 +2,7 @@ const express = require('express')
 const routes = require('./src/routes')
 const app = express()
 const cors = require("cors")
+const morgan = require('morgan')
 
 // importar la configuracion de DB
 require('./src/database')
@@ -12,7 +13,7 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
+app.use(morgan('dev'))
 /// Carpeta publica estatica
 app.use(express.static('public'))
 /// Permitir archivos mediante Express

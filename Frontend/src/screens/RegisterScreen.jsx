@@ -1,5 +1,5 @@
 import {
-  SafeAreaView,
+  ScrollView,
   View,
   Text,
   StatusBar,
@@ -7,6 +7,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   ToastAndroid,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard
 } from "react-native";
 import React, { useState, useContext } from 'react'
 import { FontAwesome } from "@expo/vector-icons";
@@ -55,7 +58,11 @@ const RegisterScreen = ({ navigation }) => {
 
 
   return (
-    <SafeAreaView style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
+      <ScrollView>
+
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+
       <View style={styles.card}>
         <Text style={styles.headerText}>Become part of our family!</Text>
 
@@ -108,7 +115,9 @@ const RegisterScreen = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+      </TouchableWithoutFeedback>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
