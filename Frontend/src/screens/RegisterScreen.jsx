@@ -8,41 +8,50 @@ import {
   StyleSheet,
   ToastAndroid,
 } from "react-native";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from 'react'
 import { FontAwesome } from "@expo/vector-icons";
 
 import { registerUser } from "../controllers/api";
-import { useState } from "react";
+import { Context } from "../controllers/context";
 
-const RegisterScreen = () => {
-  const [inputs, setInputs] = usestate({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    admin: "",
-  });
+const RegisterScreen = ({ navigation }) => {
+  const showToast = (message) => {
+    ToastAndroid.show(
+      message,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM
+      
+    )
+  }
+  
+    // Extraer datos del Context
+    const { setUser } = useContext(Context)
 
-  const register = async () => {
-    if (
-      inputs.username !== "" ||
-      inputs.email !== "" ||
-      inputs.password !== "" ||
-      inputs.confirmPassword !== ""
-    ) {
-      if (inputs.password !== inputs.confirmPassword) {
-        ToastAndroid.show("Passwords do not match", ToastAndroid.SHORT);
-        // Si el codigo de el admin es incorrecto lanza error
-      } else if (inputs.adminCode !== "123" && admin) {
-        setLoad(false);
-        return setMsg({
-          text: "El código de admin es incorrecto",
-          display: true,
-          type: false,
-        });
-      }
+    // Input del formulario del registro
+    const [inputs, setInputs] = useState({
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        adminCode: ''
+    })
+
+    // Estado para mostrar u ocultar el input con el AdminCode
+    const [admin, setAdmin] = useState(false)
+
+
+    // Funcion al presionar el boton de registro
+    const register = async () => {
+        
+            // Funcion fetch para registrar usuario
+            const res = await registerUser(inputs)
+
+
+           
     }
-  };
+
+    // Funcion para almacenar los datos en el estado dependiendo de el input en el que se escriba
+    const inputChange = (name, data) => setInputs({ ...inputs, [name]: data });
 
 
   return (
@@ -58,7 +67,7 @@ const RegisterScreen = () => {
             size={24}
             color="#5A4AE3"
           />
-          <TextInput placeholder="Email@email.com" />
+          <TextInput placeholder="Email@email.com" onChangeText={(text) => inputChange('email', text)}/>
         </View>
 
         <Text style={styles.label}>Username</Text>
@@ -69,7 +78,7 @@ const RegisterScreen = () => {
             size={24}
             color="#5A4AE3"
           />
-          <TextInput placeholder="Username" />
+          <TextInput placeholder="Username" onChangeText={(text) => inputChange('username', text)} />
         </View>
 
         <Text style={styles.label}>Password</Text>
@@ -80,7 +89,7 @@ const RegisterScreen = () => {
             size={24}
             color="#5A4AE3"
           />
-          <TextInput placeholder="Password" secureTextEntry={true} />
+          <TextInput placeholder="Password" secureTextEntry={true} onChangeText={(text) => inputChange('password', text)} />
         </View>
 
         <Text style={styles.label}>Confirm password</Text>
@@ -91,9 +100,9 @@ const RegisterScreen = () => {
             size={24}
             color="#5A4AE3"
           />
-          <TextInput placeholder="Password" secureTextEntry={true} />
+          <TextInput placeholder="Password" secureTextEntry={true} onChangeText={(text) => inputChange('confirmPassword', text)} />
         </View>
-        <TouchableOpacity style={styles.btn} onPress={register}>
+        <TouchableOpacity style={styles.btn} onPress={() => register()}>
           <Text style={{ fontSize: 20, color: "#5A4AE3", fontWeight: "bold" }}>
             Register
           </Text>

@@ -6,12 +6,26 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 
-const LoginScreen = () => {
+import { loginUser } from "../controllers/api";
+
+const LoginScreen = ({ navigation }) => {
+  //  const [email, setEmail] = useState('')
+  //  const [password, setPassword] = useState('')
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+
+  const inputChange = (name, data) => setInputs({ ...inputs, [name]: data });
+const loginBtn = async () => {
+const res = await loginUser(inputs)
+console.log(res.data)
+}
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={require("../../assets/logo2.png")} />
@@ -25,8 +39,10 @@ const LoginScreen = () => {
             color="#5A4AE3"
           />
           <TextInput
+            value={inputs.email}
             autoFocus={false}
             placeholder="email@email.com"
+            onChangeText={(text) => inputChange('email', text)}
           />
         </View>
         <Text style={styles.label}>Password</Text>
@@ -38,17 +54,21 @@ const LoginScreen = () => {
             color="#5A4AE3"
           />
           <TextInput
+            value={inputs.password}
+            onChangeText={(text) => inputChange('password', text)}
             secureTextEntry={true}
             placeholder="Password"
             ty
           />
         </View>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={loginBtn}>
           <Text style={styles.loginBtnText}>SIGN IN</Text>
         </TouchableOpacity>
         <Text style={styles.cardFooter}>
           Don't have an account?
-          <TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => {
+          navigation.navigate('Register')  
+          }}>
             <Text style={styles.regBtn}> Register</Text>
           </TouchableWithoutFeedback>
         </Text>
@@ -70,7 +90,7 @@ const styles = StyleSheet.create({
     height: 274,
   },
   card: {
-    paddingVertical:30,
+    paddingVertical: 30,
     backgroundColor: "#5A4AE3",
     width: 397,
     height: 450,
@@ -111,7 +131,7 @@ const styles = StyleSheet.create({
   loginBtnText: {
     fontWeight: "bold",
     color: "#5A4AE3",
-    fontSize: 20
+    fontSize: 20,
   },
   regBtn: {
     color: "#2F2492",
@@ -121,6 +141,6 @@ const styles = StyleSheet.create({
     marginTop: 40,
     color: "#fff",
     alignSelf: "center",
-    fontSize: 20
+    fontSize: 20,
   },
 });
