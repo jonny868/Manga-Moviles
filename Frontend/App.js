@@ -3,8 +3,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import { Context } from "./src/controllers/context";
 import MyTabs from "./Navigation";
-import LoginScreen from "./src/screens/LoginScreen";
-
 export default function App() {
   const Stack = createNativeStackNavigator();
   // Estado para administrar los mensajes
@@ -27,14 +25,18 @@ export default function App() {
   });
 
   // Estado para mostrar o no la pantalla de carga
-  const [load, setLoad] = useState(false);
+  const [text, setText] = useState('')
+  const [loader, setLoad] = useState({
+   visible: true, text: text
+  });
   return (
     <Context.Provider
       value={{
         user,
         setUser,
-        load,
+        loader,
         setLoad,
+        text, setText
       }}
     >
       <NavigationContainer>

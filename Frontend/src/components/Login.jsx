@@ -15,10 +15,12 @@ import React from "react";
 
 export default function Login() {
   return (
-    <KeyboardAvoidingView
-    enabled keyboardVerticalOffset={90} behavior={ Platform.OS === 'ios' ? 'padding' : false } style={{ flex: 1 }}
+    <KeyboardAvoidingView  style={styles.container}
     >
-      <ScrollView>
+        <View>
+            
+        </View>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View>
             <Image
@@ -79,7 +81,7 @@ export default function Login() {
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1,
     alignItems: "center",
   },
   logo: {

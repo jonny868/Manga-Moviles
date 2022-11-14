@@ -41,7 +41,7 @@ export const loginUser = async (data) => {
   return response;
 };
 //REGISTER
-export const registerUser = async (user) => {
+export const registerUser = async (data) => {
   let response;
 
   await axios

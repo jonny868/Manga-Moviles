@@ -65,10 +65,11 @@ ctrl.login = async (req, res) => {
 
 // Route de registro
 ctrl.register = async (req, res) => {
-
+console.log('Trying to register')
+// console.log(req.body.data)
     let admin = false
     // Se extraen las variables que llegan al router.post()
-    const { username, email, password, adminCode } = req.body
+    const { username, email, password, adminCode } = req.body.data
     const searchUsername = await User.findOne({ username })
     const searchEmail = await User.findOne({ email })
 
