@@ -28,14 +28,11 @@ const compare = (a, b) => {
 
 //ROUTES///////////////////////////
 
-// Ruta home para verificar
 ctrl.home = (req, res) => {
     res.send('hey home')
 }
 
-// Ruta login 
 ctrl.login = async (req, res) => {
-    // Se extraen los datos del route params al usar router.get(algunaruta/:username/:password,function)
     const { username, password } = req.params
     const searchUsername = await User.findOne({ username })
     console.log(searchUsername)
