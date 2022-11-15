@@ -13,7 +13,7 @@ import Favorites from "./src/screens/Favorites";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
 export function HomeNav() {
   return (
@@ -39,7 +39,6 @@ export function HomeNav() {
             <FontAwesome name="home" size={30} color={color} />
           ),
         }}
-        
       />
       <Tab.Screen
         name="Browse"
@@ -57,6 +56,15 @@ export function HomeNav() {
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="plus" size={30} color={color} />
           ),
+          headerShown: true,
+          headerTitle: "Add new Serie",
+          headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: "#5A4AE3",
+          },
+          headerTitleStyle:{
+            color: "#fff",
+          }
         }}
       />
       <Tab.Screen
@@ -76,7 +84,6 @@ export function HomeNav() {
             <FontAwesome name="star-o" size={30} color={color} />
           ),
         }}
-        
       />
     </Tab.Navigator>
   );
@@ -86,42 +93,40 @@ const Tab = createBottomTabNavigator();
 
 export default function MyTabs() {
   return (
-    <Stack.Navigator screenOptions={{
-      headerShown: false,
-    }}>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Home" component={HomeNav} />
       <Stack.Screen
-      name="Home"
-      component={HomeNav}
+        name="Login"
+        component={LoginScreen}
+        options={{
+          navigationBarHidden: false,
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: "#5A4AE3",
+          },
+          headerTintColor: "white",
+          headerTitle: "Login",
+          headerTitleAlign: "center",
+        }}
       />
       <Stack.Screen
-      name="Login"
-      component={LoginScreen}
-      options={{
-        navigationBarHidden: false,
-        headerShown: true,
-        headerStyle: {
-          backgroundColor: '#5A4AE3'
-        },
-        headerTintColor: 'white',
-        headerTitle:'Login',
-        headerTitleAlign: 'center',
-      }}
-      />
-      <Stack.Screen
-      name="Register"
-      component={RegisterScreen}
-      options={{
-        navigationBarHidden: false,
-        headerShown: true,
-        headerStyle: {
-          backgroundColor: '#5A4AE3'
-        },
-        headerTintColor: 'white',
-        headerTitle:'Register',
-        headerTitleAlign: 'center',
-      }}
+        name="Register"
+        component={RegisterScreen}
+        options={{
+          navigationBarHidden: false,
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: "#5A4AE3",
+          },
+          headerTintColor: "white",
+          headerTitle: "Register",
+          headerTitleAlign: "center",
+        }}
       />
     </Stack.Navigator>
-    
   );
 }

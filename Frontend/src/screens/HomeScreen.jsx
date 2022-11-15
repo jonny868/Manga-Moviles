@@ -5,27 +5,35 @@ import {
   SafeAreaView,
   StyleSheet,
   StatusBar,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
 } from "react-native";
 import React from "react";
 import { Entypo, FontAwesome } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 import MangaCard from "../components/MangaCard";
 import { Context } from "../controllers/context";
 import { useContext, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-
+import Loading from "../components/Loading";
+import ProfileScreen from "./ProfileScreen";
 
 const HomeScreen = () => {
-  const navigation = useNavigation()
-  const { load, setLoad } = useContext(Context);
+  const navigation = useNavigation();
+  const { load, setLoad, user } = useContext(Context);
   const handleProfile = () => {
-    navigation.navigate("Login");
+
     // si el usuario del context es diferente de '', va a profile, sino va a login
-   
+    if (user.username !=='') {
+      console.log(user)
+      navigation.navigate('Profile')
+    }
+    else{
+      navigation.navigate("Login");
+  }
   };
   return (
     <>
+    <Loading />
       <View style={styles.header}>
         <Entypo name="magnifying-glass" size={40} color="#fff" />
         <Text style={{ color: "#FFF", fontSize: 20, fontWeight: "bold" }}>

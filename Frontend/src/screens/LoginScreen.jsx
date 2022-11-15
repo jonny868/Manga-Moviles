@@ -29,23 +29,23 @@ const LoginScreen = ({ navigation }) => {
 
   const inputChange = (name, data) => setInputs({ ...inputs, [name]: data });
   const loginBtn = async () => {
+    setText('Loading')
     setLoad(true)
-    // const res = await loginUser(inputs);
-    // if (res.status === 200 || 304) {
-    //   console.log('Sirve')
+    const res = await loginUser(inputs);
+    if (res.status === 200 || 304) {
     //   // Desactiva la pantalla de carga
     setTimeout(() => {
       setLoad(false);
     }, 3000);
 
-    //   // Vacía el estado de los inputs
-    //   setInputs({
-    //     username: "",
-    //     password: "",
-    //   });
+      // Vacía el estado de los inputs
+      setInputs({
+        username: "",
+        password: "",
+      });
 
-    //   setUser(res.data);
-    // }
+      setUser(res.data);
+    }
     // navigation.navigate("Home");
   };
   return (
